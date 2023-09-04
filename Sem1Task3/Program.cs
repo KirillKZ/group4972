@@ -1,4 +1,6 @@
-﻿System.Console.WriteLine("Введите день недели:");
+﻿//Задача №3
+//Напишите программу, которая будет выдавать название дня недели по заданному номеру.
+System.Console.WriteLine("Введите день недели:");
 int day = int.Parse(Console.ReadLine() ?? "0");
 string[] dayOfWeek = new string[7];
 dayOfWeek[0] = "Понедельник";
