@@ -25,7 +25,8 @@ void Variant2()
     System.Console.WriteLine((ran / 10 > ran % 10) ? ran / 10 : ran % 10);
 }
 
-void Variant3(){
+void Variant3()
+{
     int ran = new System.Random().Next(10, 100);
     System.Console.WriteLine(ran);
     char[] digitChar = ran.ToString().ToCharArray();
