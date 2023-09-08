@@ -9,7 +9,7 @@ void variant1()
     //Выводим на экран строку с пояснением задачи
     Console.Write("Введите число от 1 до 7: ");
     //считываем и парсим введеное пользователем число
-    int num = Convert.ToInt32(Console.ReadLine());
+    int num = Convert.ToInt32(Console.ReadLine() ?? "0");
     //проверяем, равно ли число 6 или 7 и если равно, то отвчаем - да
     if (num == 6 || num == 7) Console.Write(num + " день недели выходной? - да");
     //если число не 6 или 7 - отвечаем нет
@@ -18,10 +18,10 @@ void variant1()
 
 void variant2()
 {
-     //Выводим на экран строку с пояснением задачи
+    //Выводим на экран строку с пояснением задачи
     Console.Write("Введите число от 1 до 7: ");
     //считываем и парсим введеное пользователем число
-    int num = Convert.ToInt32(Console.ReadLine());
+    int num = Convert.ToInt32(Console.ReadLine() ?? "0");
     //создаем новый объект типа Словарь, где ключ это число, а значение - строка
     Dictionary<int, string> week = new Dictionary<int, string>();
     //добавляем значения в словарь в вида ключ-значение
