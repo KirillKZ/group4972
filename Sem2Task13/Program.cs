@@ -51,5 +51,26 @@ void variant2()
     }
 }
 
-variant1();
-variant2();
+void variant3()
+{
+    //Выводим на экран строку с пояснением задачи
+    Console.WriteLine("Enter a number of less than 10 digits: ");
+    //считываем и парсим введеное пользователем число
+    int num = int.Parse(Console.ReadLine() ?? "0");
+    //вычисляем разрядность введеного числа с помщью десятичного логарифма
+    double length_num = Math.Log10(num);
+    //конвертируем double в int и отбрасываем дробную часть
+    length_num = (int)length_num;
+    //Console.WriteLine(length_num);
+    if (length_num > 1)
+    {
+        Console.WriteLine((num / (int)Math.Pow(10, length_num - 2)) % 10);
+    }
+    else
+    {
+        Console.WriteLine("There is no third digit in this number");
+    }
+}
+//variant1();
+//variant2();
+variant3();
