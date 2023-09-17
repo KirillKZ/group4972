@@ -25,6 +25,3 @@ ShowCube(5);
 System.Console.WriteLine(BuildLine(15, 1));
 System.Console.WriteLine(BuildLine(15, 2));
 System.Console.WriteLine(BuildLine(15, 3));
-//System.Console.WriteLine("1" +"\t" + "|" + "2");
-
-//System.Console.WriteLine("12434" +"\t" + "|" + "23455");
