@@ -4,6 +4,7 @@
 // Например:
 // 4 -> 24 
 // 5 -> 120
+using System.Numerics;
 
 int ReadData(string msg)
 {
@@ -30,9 +31,9 @@ long FactorialN(int N)
 
 }
 
-long FactorialN2(int N)
+BigInteger FactorialN2(int N)
 {
-    long res = 1;
+    BigInteger res = 1;
     for (int i = 2; i <= N; i++)
     {
         res *= i;
@@ -49,7 +50,7 @@ System.Console.WriteLine(DateTime.Now - d1);
 
 
 DateTime d2 = DateTime.Now;
-long res2 = FactorialN2(num);
+BigInteger res2 = FactorialN2(num);
 System.Console.WriteLine(DateTime.Now - d2);
 
 PrintResult($"Факториал числа {num} = {res}");
