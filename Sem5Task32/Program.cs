@@ -25,7 +25,7 @@ int[] CreateArray(int arrLength, int downBound, int upBound)
     return arr;
 }
 
-int[] changeSign(int[] arr)
+int[] InverseArray(int[] arr)
 {
     for (int i = 0; i < arr.Length; i++)
     {
@@ -35,4 +35,4 @@ int[] changeSign(int[] arr)
 }
 
 int [] arr = CreateArray(12, -9, 9);
-PrintResult($"{ArrayToString(arr)} -> {ArrayToString(changeSign(arr))}" );
+PrintResult($"{ArrayToString(arr)} -> {ArrayToString(InverseArray(arr))}" );
