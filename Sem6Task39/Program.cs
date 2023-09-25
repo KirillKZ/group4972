@@ -34,12 +34,13 @@ int[] CreateArray(int arrLength, int downBound, int upBound)
 //метод переворачивающий массив в том же массиве
 int[] SwapSameArray(int[] arr)
 {
-    int temp = 0;
+    //int temp = 0;
     for (int i = 0; i < arr.Length / 2; i++)
     {
-        temp = arr[arr.Length - 1 - i];
-        arr[arr.Length - 1 - i] = arr[i];
-        arr[i] = temp;
+        (arr[arr.Length - 1 - i], arr[i]) = (arr[i], arr[arr.Length - 1 - i]);
+        // temp = arr[arr.Length - 1 - i];
+        // arr[arr.Length - 1 - i] = arr[i];
+        // arr[i] = temp;
     }
     return arr;
 }
