@@ -61,4 +61,5 @@ int[] arr = CreateArray(11, 1, 98);
 PrintResult($"исходный массив {ArrayToString(arr)}");
 //выводим на экран перевернутый массив
 PrintResult($"перевернутый массив {ArrayToString(SwapSameArray(arr))}");
+//выводим на экран еще раз перевернутый массив с помощью другого метода
 PrintResult($"еще раз перевернутый массив {ArrayToString(SwapNewArray(arr))}");
