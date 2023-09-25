@@ -34,19 +34,52 @@ int DiffMinMax(int[] arr)
 //сортируем массив методом вставки
 int[] InsertionSort(int[] arr)
 {
-    for(int i=1; i < arr.Length; i++)
-            {
-                int k = arr[i];
-                int j = i - 1;
+    for (int i = 1; i < arr.Length; i++)
+    {
+        int k = arr[i];
+        int j = i - 1;
 
-                while(j>=0 && arr[j] > k)
-                {
-                    arr[j + 1] = arr[j];
-                    j--;
-                }
-                arr[j + 1] = k;
-            }
+        while (j >= 0 && arr[j] > k)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = k;
+    }
 
+    return arr;
+}
+//обратная сортировка массиа подсчетом для произвольного целочисленного диапазона
+int[] CountingSort(int[] arr)
+{   //поиск минимального и максимального значения
+    int min = arr[0];
+    int max = arr[0];
+    foreach (int element in arr)
+    {
+        if (element > max) max = element;
+        else if (element < min) min = element;
+    }
+    //корректировка максимального значения, если минимальное значение отлично от 0
+    int correctionFactor = min != 0 ? -min : 0;
+    max += correctionFactor;
+    //создание вспомогательного массива, в котором считается вхождение элементов главного массива
+    int[] count = new int[max + 1];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        count[arr[i] + correctionFactor]++;
+
+    }
+    //восстанавливаем исходный массив в порядке убывания
+    int index = 0;
+    //for (int i = 0; i < count.Length; i++) - для востановления в порядке возрастания
+    for (int i = count.Length - 1; i >= 0; i--)
+    {
+        for (int j = 0; j < count[i]; j++)
+        {
+            arr[index] = i - correctionFactor;
+            index++;
+        }
+    }
     return arr;
 }
 
@@ -58,3 +91,4 @@ PrintResult($"исходный массив {ArrayToString(arr)}");
 int diff = DiffMinMax(InsertionSort(arr));
 //выводим на экран сначала массив, затем количество чётных чисел в массиве
 PrintResult($"отсортированный массив {ArrayToString(arr)} разница между первым и последним элементом {diff}");
+PrintResult($"отсортированный в порядке убывания массив {ArrayToString(CountingSort(arr))}");
