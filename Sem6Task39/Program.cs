@@ -17,7 +17,7 @@ void PrintResult(string res)
 //метод для конвертации массива в строковую переменную
 string ArrayToString(int[] arr)
 {
-    return $"[{String.Join(",", arr)}]";
+    return $"[{String.Join(", ", arr)}]";
 }
 
 //метод для создания массива с заданной длинной и заполнения его случайными числами с заданным диапазоном
@@ -32,16 +32,27 @@ int[] CreateArray(int arrLength, int downBound, int upBound)
     return arr;
 }
 //метод переворачивающий массив в том же массиве
-int[] TurnArray(int[] arr)
+int[] SwapSameArray(int[] arr)
 {
     int temp = 0;
-    for (int i = 0, j = arr.Length - 1; i < arr.Length / 2; i++, j--)
+    for (int i = 0; i < arr.Length / 2; i++)
     {
-        temp = arr[j];
-        arr[j] = arr[i];
+        temp = arr[arr.Length - 1 - i];
+        arr[arr.Length - 1 - i] = arr[i];
         arr[i] = temp;
     }
     return arr;
+}
+
+int[] SwapNewArray(int[] arr)
+{
+    int[] outArr = new int[arr.Length];
+    
+    for (int i = 0; i < arr.Length; i++)
+    {
+       outArr[i] = arr[arr.Length - 1- i];
+    }
+    return outArr;
 }
 
 //создаем массив в методе и присваиваем его переменной
@@ -49,4 +60,5 @@ int[] arr = CreateArray(11, 1, 98);
 //выводим на экран исходный массив
 PrintResult($"исходный массив {ArrayToString(arr)}");
 //выводим на экран перевернутый массив
-PrintResult($"перевернутый массив {ArrayToString(TurnArray(arr))}");
+PrintResult($"перевернутый массив {ArrayToString(SwapSameArray(arr))}");
+PrintResult($"еще раз перевернутый массив {ArrayToString(SwapNewArray(arr))}");
