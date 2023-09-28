@@ -16,6 +16,32 @@ void PrintResult(string res)
     Console.WriteLine(res);
 }
 
-int BiggerZero (int num){
+string ArrayToString(int[] arr)
+{
+    return $"[{String.Join(", ", arr)}]";
+}
+
+int[] InputArray(int length)
+{
+    int[] arr = new int[length];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = ReadData("Введите элемент массива:");
+    }
+    return arr;
+}
+int CountPositiveNumbers(int[] arr)
+{
+    int count = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > 0) count++;
+    }
+    return count;
 
 }
+
+int length = ReadData("Введите длину массива:");
+int[] arr = InputArray(length);
+int countPositive = CountPositiveNumbers(arr);
+PrintResult($"{ArrayToString(arr)} -> {countPositive}");
