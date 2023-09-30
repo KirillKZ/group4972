@@ -25,18 +25,6 @@ double[,] CreateRandomMatrix(int m, int n, int minLimitRandom, int maxLimitRando
     return arr2D;
 }
 
-void PrintArray(double[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            System.Console.Write(matrix[i, j] + "\t");
-        }
-        System.Console.WriteLine();
-    }
-}
-
 void PrintRainbowArray(double[,] matrix)
 {
     ConsoleColor[] colors = new ConsoleColor[]
@@ -78,7 +66,7 @@ void PrintRainbowArray(double[,] matrix)
 int rows = ReadData("Введите число строк:");
 int columns = ReadData("Введите число столбцов:");
 double[,] arr2D = CreateRandomMatrix(rows, columns, 1, 99);
-PrintArray(arr2D);
+
 System.Console.WriteLine();
 PrintRainbowArray(arr2D);
 
