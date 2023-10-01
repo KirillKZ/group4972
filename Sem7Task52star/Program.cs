@@ -7,26 +7,41 @@
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 // * Дополнительно вывести среднее арифметическое по диагоналям и диагональ выделить разным цветом
 
+//--------------------------------------------------------------------Тело программы-------------------------------------------------------------
+//вводим размерность массива
+int rows = ReadData("Введите колчество строк:");
+int columns = ReadData("Введите колчество столбцов:");
+//создаем переменную типа двумерный массив и присваиваем ей ссылку на созданный в методе массив
+int[,] matrix = Create2DArray(rows, columns, 10, 99);
+//выводим на экран массив и результаты вычисления средней арифметической по диагоналям
+FindDiagonalAvrgAndPrinResult(PrintColorDiagonals(matrix));
 
-//создаем и заполняем двумерный массив
-int[,] CreateIncreasingMatrix(int n, int m, int k)
+//------------------------------------------------------------------Методы-----------------------------------------------------------------------
+
+int ReadData(string msg)
 {
-    int[,] arr2D = new int[n, m];
-    int sum = 1;
-
-    for (int i = 0; i < n; i++)
+    Console.Write(msg);
+    return int.Parse(Console.ReadLine() ?? "0");
+}
+//создаем и заполняем двумерный массив случайными числами из назначенного диапазаона (для красоты все двухзначные)
+int[,] Create2DArray(int rows, int columns, int downLimit, int upLimit)
+{
+    int[,] matrix = new int[rows, columns];
+    Random rnd = new Random();
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < m; j++)
+        for (int j = 0; j < columns; j++)
         {
-            arr2D[i, j] += sum;
-            sum += k;
+            matrix[i, j] = rnd.Next(downLimit, upLimit + 1);
         }
 
     }
-    arr2D[0, 0] = 1;
-    return arr2D;
+    return matrix;
 }
-//находим значения диагоналей, раскрашиваем и выводим на экран, одновременно с этим создаем двумерный массив со значениями диагоналей
+//Находим значения диагоналей, раскрашиваем и выводим на экран, одновременно с этим создаем двумерный массив со значениями диагоналей.
+//тут происходит поворот двумерного массива на 90 градусов протиы часовой стрелки (сама по себе интересная задачка).
+//Это делается для того, чтобы потом вывести в ряд значение диагоналей, так как при большой матрице цвета диагоналей повторяются 
+//и не совсем ясно к какой диагонале относится средняя арифметическая окрашенная в цвет диагонали
 int[,] PrintColorDiagonals(int[,] matrix)
 {
     int[,] diagNums = new int[matrix.GetLength(0) + (matrix.GetLength(1) - 1), matrix.GetLength(1)];
@@ -64,16 +79,20 @@ void FindDiagonalAvrgAndPrinResult(int[,] matrix)
             }
 
         }
-        System.Console.WriteLine($"The average in diagonal{str} are: {((double)sum / (double)count)}");
+        System.Console.WriteLine($"The average in diagonal{str} are: {Math.Round((double)sum / (double)count, 2)}");
 
 
     }
 }
-
+//метод для выбора цвета и печати цифры из массива в выбраном цвете. 
+//Выбор цвета зависит от того, на сколько и в какую сторону от нуля отклоняются разница индексов опеределенной ячейки.
 void SetColor(int[,] matrix, int x, int y)
 {
+    int i = 0;
+    int d = 0;
     ConsoleColor[] colors = new ConsoleColor[]
        {ConsoleColor.White,
+         ConsoleColor.DarkGreen,
          ConsoleColor.Blue,
          ConsoleColor.Cyan,
          ConsoleColor.DarkBlue,
@@ -83,19 +102,15 @@ void SetColor(int[,] matrix, int x, int y)
          ConsoleColor.Gray,
          ConsoleColor.Green,
          ConsoleColor.Red};
-    Console.ForegroundColor = colors[5 + (x - y)];
-    System.Console.Write(matrix[x, y] + "\t");
+    if ((11 + i) + (x - y) <= 0) i += 10;
+    if (x - y < 0) Console.ForegroundColor = colors[(11 + i) + (x - y)];
+
+    if ((x - y) - d >= 10) d += 10;
+    if (x - y >= 0) Console.ForegroundColor = colors[(x - y) - d];
+
+    System.Console.Write(matrix[x, y] + " ");
     Console.ResetColor();
 
 }
-
-//определяем размерность массива и шаг для заполнения значениями (размерность массива ограничена количеством цветов в палитре)
-int n = 5;
-int m = 5;
-int k = 1;
-
-int[,] matrix = CreateIncreasingMatrix(n, m, k);
-
-FindDiagonalAvrgAndPrinResult(PrintColorDiagonals(matrix));
 
 
