@@ -24,11 +24,12 @@ void PrintArray2D(int[,] matrix)
 void CurlInMatrix(int[,] matrix)
 {
     int n = matrix.GetLength(0);
+    int m = matrix.GetLength(1);
     int value = 1;
     int startX = 0;
     int startY = 0;
     int endX = n - 1;
-    int endY = n - 1;
+    int endY = m - 1;
     while (startX <= endX && startY <= endY)
     {
         for (int i = startY; i <= endY; i++)
@@ -59,7 +60,7 @@ void CurlInMatrix(int[,] matrix)
 }
 
 //создаем массив 4х4
-int[,] Curl = new int[4, 4];
+int[,] Curl = new int[10, 10];
 //заполняем массив значениями по спирали
 CurlInMatrix(Curl);
 //выводим массив в терминал
