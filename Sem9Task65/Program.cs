@@ -14,15 +14,16 @@ int ReadData(string msg)
 string RecMN(int m, int n)
 {
     string res = String.Empty;
-    
+
     if (m >= n)
     {
-        return res + m;
+        res = m + "";
     }
     else
     {
-      return res+=  m + " " + RecMN(m + 1, n) ;
+        res += m + " " + RecMN(m + 1, n);
     }
+    return res;
 
 
 
