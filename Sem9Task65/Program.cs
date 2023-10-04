@@ -24,11 +24,8 @@ string RecMN(int m, int n)
         res += m + " " + RecMN(m + 1, n);
     }
     return res;
-
-
-
 }
 
 int m = ReadData("Введите число M ");
 int n = ReadData("Введите число N ");
-System.Console.WriteLine(RecMN(m, n));
+System.Console.WriteLine((m > n) ? RecMN(n, m) : RecMN(m, n));
