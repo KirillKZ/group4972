@@ -7,15 +7,15 @@ int ReadData(string msg)
     Console.Write(msg);
     return int.Parse(Console.ReadLine() ?? "0");
 }
-long RecAkkerman(long n, long m)
+long RecAkkerman(long m, long n)
 {
-    if (n == 0)
-        return m + 1;
+    if (m == 0)
+        return n + 1;
     else
-      if ((n != 0) && (m == 0))
-        return RecAkkerman(n - 1, 1);
+      if ((m != 0) && (n == 0))
+        return RecAkkerman(m - 1, 1);
     else
-        return RecAkkerman(n - 1, RecAkkerman(n, m - 1));
+        return RecAkkerman(m - 1, RecAkkerman(m, n - 1));
 }
 
 long m = ReadData("Введите число M ");
